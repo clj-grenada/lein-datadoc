@@ -33,18 +33,22 @@
 ;;;; Subtasks
 
 ;; REVIEW: Before each extraction we have to run clean. (RM 2015-07-28)
-(defn extract []
+(defn collect []
   (lein/info "Extracting data from sources.")
+  (lein/info "Incorporating external metadata.")
   (lein/info "But not really right now."))
 
-;; REVIEW: This step should incorporate manually supplied data. (RM 2015-07-28)
 (defn jar []
-  (lein/info "Creating JAR from extracted data.")
-  (lein/info "But not really right now.")))
+  (lein/info "Creating JAR from compiled data.")
+  (lein/info "But not really right now."))
+
+(defn install []
+  (lein/info "Installing Datadoc JAR into local Maven repo.")
+  (lein/info "But not really right now."))
 
 (defn deploy []
   (lein/info "Deploying Datadoc JAR.")
-  (lein/info "But not really right now."))))
+  (lein/info "But not really right now."))
 
 ;; REVIEW: Separate cleanly between files that are extracted-only and files that
 ;;         are edited by the user. If we want to be extra safe, we could write a
@@ -58,7 +62,7 @@
 
 ;;;; Main task
 
-(def ^:private subtasks [#'extract #'jar #'deploy #'clean])
+(def ^:private subtasks [#'collect #'jar #'install #'deploy #'clean])
 (def ^:private subtask-names (set  (map var->name subtasks)))
 
 ;; TODO: Add some progress messages. (RM 2015-07-28)
