@@ -34,6 +34,7 @@
    {:target-path target-path}))
 
 
+;; TODO: Add some progress messages. (RM 2015-07-28)
 (defn -main
   "
 
