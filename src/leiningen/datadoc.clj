@@ -1,4 +1,4 @@
-(ns lein-datadoc.core
+(ns leiningen.datadoc
   (:require [clojure.java.io :as io]
             [grenada
              [core :as gren-core]
