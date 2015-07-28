@@ -6,14 +6,10 @@
             [grimoire.api.fs :as api.fs]
             grimoire.doc
             [jolly.core :as jolly]
+            [leiningen.core.main :as lein]
             [plumbing
              [core :refer [fnk safe-get <-]]
              [graph :as graph]]))
-
-;;; Note: This probably has to evolve to a full plugin. Having to provide
-;;;       entries from project.clj through :aliases is already tedious, but
-;;;       still doable. For the deployment we'll need Leiningen functionality,
-;;;       though.
 
 ;; TODO: Make these configurable in project.clj. (RM 2015-07-27)
 (defn get-config [target-path]
@@ -34,8 +30,39 @@
    {:target-path target-path}))
 
 
+;;;; Subtasks
+
+;; REVIEW: Before each extraction we have to run clean. (RM 2015-07-28)
+(defn extract []
+  (lein/info "Extracting data from sources.")
+  (lein/info "But not really right now."))
+
+;; REVIEW: This step should incorporate manually supplied data. (RM 2015-07-28)
+(defn jar []
+  (lein/info "Creating JAR from extracted data.")
+  (lein/info "But not really right now.")))
+
+(defn deploy []
+  (lein/info "Deploying Datadoc JAR.")
+  (lein/info "But not really right now."))))
+
+;; REVIEW: Separate cleanly between files that are extracted-only and files that
+;;         are edited by the user. If we want to be extra safe, we could write a
+;;         checksum of the extracted data and warn the user if the checksum
+;;         changed. But people shouldn't mess with stuff in :target-path anyway.
+;;         (RM 2015-07-28)
+(defn clean []
+  (lein/info "Removing Grenada files.")
+  (lein/info "But not really right now."))
+
+
+;;;; Main task
+
+(def ^:private subtasks [#'extract #'jar #'deploy #'clean])
+(def ^:private subtask-names (set  (map var->name subtasks)))
+
 ;; TODO: Add some progress messages. (RM 2015-07-28)
-(defn -main
+(defn datadoc
   "
 
   Arguments up to & to be supplied directly by Leiningen.
