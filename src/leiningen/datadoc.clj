@@ -21,6 +21,9 @@
             [schema.core :as s])
   (:import org.sonatype.aether.transfer.NoRepositoryConnectorException))
 
+;;; TODO: Provide hooks for standard Leiningen tasks, so that the user doesn't
+;;;       have to run the 'lein datadoc' commands separately.
+
 ;;;; Helper functions
 
 (defn- name-of-var
