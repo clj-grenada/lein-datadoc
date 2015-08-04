@@ -2,14 +2,18 @@
 
 A Leiningen plugin for producing **Datadoc JARs** from your Leiningen projects.
 
+If you **don't know** about Datadoc JARs: they are a way of packaging and
+publishing documentation for your project/library. Good documentation increases
+adoption, so why not *do the data doc*? Most likely, all you need to do is
+follow the two steps described [below](#getting-started).
+
 Belongs to the [Grenada project](https://github.com/clj-grenada/grenada-spec).
 
 Only tested with **Leiningen 2.5.1**.
 
 ## Getting started
 
-Basic usage doesn't require any configuration. Steps to getting a Datadoc JAR
-for **your Leiningen project** on Clojars:
+Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
 
   1. Decide if you want the `lein datadoc` plugin available in all your
      Leiningen projects or only in selected ones.
