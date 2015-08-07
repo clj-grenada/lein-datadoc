@@ -24,11 +24,16 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
              :dependencies […
                             [org.clojure-grimoire/lein-grim "0.3.8"]]
              :plugins […
-                       [org.clj-grenada/lein-datadoc "0.1.0"]]
+                       [org.clj-grenada/lein-datadoc "0.1.0"
+                        :exclusions [org.clojure/core.cache]]
              …}
        …}
 
      ```
+
+     Why the exclusion is necessary is explained in Leiningen
+     [#1563](https://github.com/technomancy/leiningen/issues/1563) and
+     [#1739](https://github.com/technomancy/leiningen/issues/1739).
 
      Note that this will place the lein-grim dependency on the classpath of all
      your Leiningen projects.
