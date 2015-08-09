@@ -6,7 +6,7 @@
   :eval-in-leiningen true
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clj-grenada/jolly "0.1.0-SNAPSHOT"]
-                 [org.clj-grenada/lib-grenada "0.3.2"]
+                 [org.clj-grenada/lib-grenada "0.3.3-SNAPSHOT"]
 
                  ;; This is from the local repo and not the actual 0.3.8.
                  [org.clojure-grimoire/lein-grim "0.3.8"]
