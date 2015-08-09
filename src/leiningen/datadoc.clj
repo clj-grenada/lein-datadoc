@@ -30,6 +30,7 @@
   "Returns the name under which var V is interned as a string."
   [v]
   (-> v
+      meta
       (safe-get :name)
       name))
 
