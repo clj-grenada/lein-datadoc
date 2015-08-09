@@ -20,20 +20,19 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
 
      a. **all projects** Augment your `.lein/profiles.clj` in the following way:
      ```clojure
-     {:user {…
-             :dependencies […
-                            [org.clojure-grimoire/lein-grim "0.3.8"]]
-             :plugins […
-                       [org.clj-grenada/lein-datadoc "0.1.0"
-                        :exclusions [org.clojure/core.cache]]}}
+     {…
+      :user {…
+             :aliases {…
+                       "datadoc" ["with-profile" "datadoc" "datadoc"]}}
+      :datadoc {…
+                :dependencies […
+                               [org.clojure-grimoire/lein-grim "0.3.8"]]
+                :plugins […
+                          [org.clj-grenada/lein-datadoc "0.1.0"]}}
      ```
 
-     Why the exclusion is necessary is explained in Leiningen
-     [#1563](https://github.com/technomancy/leiningen/issues/1563) and
-     [#1739](https://github.com/technomancy/leiningen/issues/1739).
-
-     Note that this will place the lein-grim dependency on the classpath of all
-     your Leiningen projects.
+     Yes, this introduces a new profile. See [below](#why-profile-and-alias) why
+     this necessary.
 
      b. **selected projects** Augment your `project.clj` in the following way:
      ```clojure
@@ -48,14 +47,27 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
                         [org.clj-grenada/lein-datadoc "0.1.0"]]})
      ```
 
-     For more information on profiles, see the [Leiningen
-     documentation](https://github.com/technomancy/leiningen/blob/master/doc/PROFILES.md#default-profiles).
-
   3. In your project's root directory, run `lein datadoc install` to create a
      Datadoc JAR and install it into your **local** Maven repository. Or `lein
      datadoc deploy clojars` to create a Datadoc JAR and deploy it to Clojars.
      The **coordinates** in both cases will be the same as your project's.
 
+
+## Why profile and alias?
+
+There's a problem with AOT compilation and some bugs somewhere. See Leiningen
+[#1563](https://github.com/technomancy/leiningen/issues/1563) and
+[#1739](https://github.com/technomancy/leiningen/issues/1739) for details. As a
+workaround they suggest putting `:exclusions` in the plugin dependency, but in
+this case we actually need `org.clojure/core.cache`, so we can't exclude it.
+
+Adding a `:datadoc` profile keeps the Datadoc stuff out of the way and the
+alias makes it easy to type. An extra benefit is that lein-grim doesn't end up
+in all your projects' classpaths, which it would do if you put it in the `:user`
+profile.
+
+For more information on profiles, see the [Leiningen
+documentation](https://github.com/technomancy/leiningen/blob/master/doc/PROFILES.md#default-profiles).
 
 ## More information
 
