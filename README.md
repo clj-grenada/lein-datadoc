@@ -25,10 +25,7 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
                             [org.clojure-grimoire/lein-grim "0.3.8"]]
              :plugins […
                        [org.clj-grenada/lein-datadoc "0.1.0"
-                        :exclusions [org.clojure/core.cache]]
-             …}
-       …}
-
+                        :exclusions [org.clojure/core.cache]]}}
      ```
 
      Why the exclusion is necessary is explained in Leiningen
@@ -48,9 +45,7 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
               :dependencies […
                              [org.clojure-grimoire/lein-grim "0.3.8"]]
               :plugins […
-                        [org.clj-grenada/lein-datadoc "0.1.0"]]
-              …}
-       …)
+                        [org.clj-grenada/lein-datadoc "0.1.0"]]})
      ```
 
      For more information on profiles, see the [Leiningen
