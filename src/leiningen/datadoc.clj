@@ -3,9 +3,10 @@
             [clojure.java.io :as io]
             [grenada
              [config :as gren-config]
-             [core :as gren-core]
              [exporters :as exporters]
+             [postprocessors :as postprocessors]
              [utils :as gren-utils]]
+            [grenada.utils.jar :as gren-jar]
             [grimoire.api.fs :as api.fs]
             [jolly.core :as jolly]
             [leiningen
@@ -33,11 +34,6 @@
       meta
       (safe-get :name)
       name))
-
-(defn- str-file
-  "Like io/file, but (str …)ingifies the resulting File."
-  [& args]
-  (str (apply io/file args)))
 
 
 ;;;; Schema for the :datadoc entry in project.clj
@@ -108,11 +104,12 @@
 
          :datadoc
          {:source-paths (if-let [sps (:source-paths user-config)]
-                          (map #(str-file (safe-get pm :root) %) sps)
+                          (map #(gren-utils/str-file (safe-get pm :root) %) sps)
                           (safe-get pm :source-paths))
           :target-path  (if-let [tp (:target-path user-config)]
-                          (str-file (safe-get pm :root) tp)
-                          (str-file (safe-get pm :target-path) "datadoc"))
+                          (gren-utils/str-file (safe-get pm :root) tp)
+                          (gren-utils/str-file (safe-get pm :target-path)
+                                               "datadoc"))
 
           :jar-coords
           {:group
@@ -129,7 +126,7 @@
            {;; Where the Grimoire data should be stored
             :grimoire-out
             (fnk [[:datadoc target-path]]
-              (str-file target-path "grimoire-data"))
+              (gren-utils/str-file target-path "grimoire-data"))
 
             ;; Configuration object for lib-grimoire calls
             :grimoire-config
@@ -139,7 +136,7 @@
             ;; Where the raw Grenada data should be stored
             :grenada-out
             (fnk [[:datadoc target-path]]
-              (str-file target-path "grenada-data"))})
+              (gren-utils/str-file target-path "grenada-data"))})
          pre-conf)]
     (merge pre-conf graph-conf))) ; If this confuses you, read about Graph.
 
@@ -154,7 +151,7 @@
                     ,,[:jar-coords group artifact version]]]
                   config]
     {:coordinates [(symbol group artifact) version :classifier "datadoc"]
-     :jar-file (io/file target-path (gren-core/jar-name artifact version))
+     :jar-file (io/file target-path (gren-jar/jar-name artifact version))
      :pom-file (io/file target-path "pom.xml")
      :local-repo local-repo}))
 
@@ -243,8 +240,8 @@
   {:help-arglists []}
   [config]
   (ensure-collect config)
-  (lein/info "datadoc jar: Creating JAR from compiled data.")
-  (gren-core/jar-from-files
+  (lein/info "datadoc jar: Creating JAR from collected data.")
+  (postprocessors/jar-from-files
     (safe-get config :grenada-out)
     (safe-get-in config [:datadoc :target-path])
     (gren-utils/safe-select-keys (safe-get-in config [:datadoc :jar-coords])
