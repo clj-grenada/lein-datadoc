@@ -52,6 +52,11 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
      datadoc deploy clojars` to create a Datadoc JAR and deploy it to Clojars.
      The **coordinates** in both cases will be the same as your project's.
 
+     Note that Clojars doesn't know about Datadoc JARs (yet), so it will display
+     your Datadoc JAR in an odd way or not at all. But don't worry, if you
+     didn't see an error while deploying, everything will be where you want it
+     to be. If Datadoc JARs become popular, Clojars will probably start
+     supporting them.
 
 ## Why profile and alias?
 
