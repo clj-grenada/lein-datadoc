@@ -73,6 +73,9 @@ alias makes it easy to type. An extra benefit is that lein-grim doesn't end up
 in all your projects' classpaths, which it would do if you put it in the `:user`
 profile.
 
+The drawback is that you can't use **lein do** with this setup. `lein do datadoc
+this, datadoc that` will not do what you want in certain cases.
+
 For more information on profiles, see the [Leiningen
 documentation](https://github.com/technomancy/leiningen/blob/master/doc/PROFILES.md#default-profiles).
 
