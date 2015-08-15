@@ -179,6 +179,11 @@
 
 ;; TODO: Add incorporation of external metadata. (RM 2015-07-28)
 ;; TODO: Add incorporation of metadata annotations. (RM 2015-07-30)
+;; TODO: Investigate the problem with 'lein do'. See the second info message.
+;;       For some reason the handler doesn't get called if we use 'lein do',
+;;       although it appears in the metadata. If you use the 'supervise' flavour
+;;       of the dire exception and handler stuff, it works, though. (RM
+;;       2015-08-15)
 (defn collect
   "Extract metadata from your Clojure files.
 
@@ -227,6 +232,16 @@
                            "clj"
                            ~grimoire-out)
       '(require 'grimoire.doc)))
+
+  (lein/info
+    (str
+      "■■■■■■■■\n"
+      "If you get something like\n"
+      "clojure.lang.ExceptionInfo: throw+: #g/t [:grenada.transformers/missing-bar-type-defs …,\n"
+      "it might be because you ran 'lein do datadoc this, datadoc that'. This\n"
+      "is not possible. You have to run 'lein datadoc this' and then 'lein\n"
+      "datadoc that'."
+      "■■■■■■■■"))
 
   (->> (jolly/read-all-things (safe-get config :grimoire-config))
        (jolly/grim-ts->gren-ts-with-bars (safe-get config :grimoire-config))
