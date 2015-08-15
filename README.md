@@ -30,7 +30,7 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
                 :dependencies […
                                [org.clojars.rmoehn/lein-grim "0.3.10"]]
                 :plugins […
-                          [org.clj-grenada/lein-datadoc "0.1.0"]}}
+                          [org.clj-grenada/lein-datadoc "1.0.0-rc.1"]}}
      ```
 
      Yes, this introduces a new profile. See [below](#why-profile-and-alias) why
@@ -46,7 +46,7 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
               :dependencies […
                              [org.clojars.rmoehn/lein-grim "0.3.10"]]
               :plugins […
-                        [org.clj-grenada/lein-datadoc "0.1.0"]]})
+                        [org.clj-grenada/lein-datadoc "1.0.0-rc.1"]]})
      ```
 
   3. In your project's root directory, run `lein datadoc install` to create a
