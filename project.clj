@@ -1,4 +1,4 @@
-(defproject org.clj-grenada/lein-datadoc "0.1.0-SNAPSHOT"
+(defproject org.clj-grenada/lein-datadoc "1.0.0-rc.1"
   :description "Leiningen plugin for creating and deploying Datadoc JARs"
   :url "https://github.com/clj-grenada/lein-datadoc"
   :license {:name "MIT license"
