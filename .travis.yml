@@ -13,8 +13,13 @@ script:
  - lein datadoc install
  - popd
 
+ - git clone --depth 1 -b v1.0.0-rc.1 https://github.com/clj-grenada/lib-grenada.git $HOME/lib-grenada
+ - pushd $HOME/lib-grenada
+ - lein datadoc install
+ - popd
+
  - pushd ci/datadoc-reader
- - lein run -m datadoc-reader.core
+ - lein test
  - popd
 
 # TODO: Do just the install and deploy without verification on some
