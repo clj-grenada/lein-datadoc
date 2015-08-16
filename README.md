@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/clj-grenada/lein-datadoc.svg?branch=devel)](https://travis-ci.org/clj-grenada/lein-datadoc)
+
 # lein-datadoc
 
 A Leiningen plugin for producing **Datadoc JARs** from your Leiningen projects.
