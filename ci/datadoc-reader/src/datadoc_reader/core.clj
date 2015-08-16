@@ -2,14 +2,15 @@
   (:require [grenada
              [aspects :as a]
              [converters :as converters]
-             [reading :as reading]
+             [sources :as sources]
              [things :as t]]))
 
 (defn -main []
-  (let [things (reading/from-depspec '[prismatic/plumbing])
+  (let [things (sources/from-depspec '[prismatic/schema "0.4.3"
+                                       :classifier "datadoc"])
         a-thing (-> things
                     converters/to-mapping
-                    (get-in ["prismatic" "plumbing" "0.4.4" "clj"
-                             "plumbing.core" "safe-get"]))]
+                    (get ["prismatic" "schema" "0.4.3" "clj" "schema.core"
+                          "either"]))]
     (assert (t/thing?+ a-thing))
     (assert (contains? (:aspects a-thing) ::a/fn))))

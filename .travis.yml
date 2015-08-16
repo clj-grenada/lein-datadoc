@@ -7,15 +7,15 @@ install: lein install
 script:
  - cp ci/profiles.clj $HOME/.lein/profiles.clj
 
- - git clone https://github.com/Prismatic/plumbing.git
- - pushdir plumbing
- - git co plumbing-0.4.4
+ - git clone --depth 1 -b schema-0.4.3 https://github.com/Prismatic/schema.git $HOME/schema
+ - pushd $HOME/schema
+ - lein cljx once
  - lein datadoc install
- - popdir
+ - popd
 
- - pushdir ci
- - lein run datadoc-reader.core
- - popdir
+ - pushd ci/datadoc-reader
+ - lein run -m datadoc-reader.core
+ - popd
 
 # TODO: Do just the install and deploy without verification on some
 #       random, frequently contributed to Clojure project. Tried
