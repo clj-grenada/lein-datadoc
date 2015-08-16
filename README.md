@@ -11,7 +11,7 @@ follow the two steps described [below](#getting-started).
 
 Belongs to the [Grenada project](https://github.com/clj-grenada/grenada-spec).
 For an **overview** of Grenada documentation, [see
-here](https://github.com/clj-grenada/lib-grenada/doc/overview.md).
+here](https://github.com/clj-grenada/lib-grenada/blob/devel/doc/overview.md).
 
 Only tested with **Leiningen 2.5.1**.
 
