@@ -240,7 +240,7 @@
       "clojure.lang.ExceptionInfo: throw+: #g/t [:grenada.transformers/missing-bar-type-defs …,\n"
       "it might be because you ran 'lein do datadoc this, datadoc that'. This\n"
       "is not possible. You have to run 'lein datadoc this' and then 'lein\n"
-      "datadoc that'."
+      "datadoc that'.\n"
       "■■■■■■■■"))
 
   (->> (jolly/read-all-things (safe-get config :grimoire-config))
