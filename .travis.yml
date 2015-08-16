@@ -1,0 +1,23 @@
+sudo: false
+language: clojure
+jdk:
+ - oraclejdk8
+ - openjdk7
+install: lein install
+script:
+ - cp ci/profiles.clj $HOME/.lein/profiles.clj
+
+ - git clone --depth 1 -b schema-0.4.3 https://github.com/Prismatic/schema.git $HOME/schema
+ - pushd $HOME/schema
+ - lein cljx once
+ - lein datadoc install
+ - popd
+
+ - pushd ci/datadoc-reader
+ - lein run -m datadoc-reader.core
+ - popd
+
+# TODO: Do just the install and deploy without verification on some
+#       random, frequently contributed to Clojure project. Tried
+#       ClojureScript compiler and Midje, but there appears to be a bug
+#       in lib-grimoire. (RM 2015-08-13)
