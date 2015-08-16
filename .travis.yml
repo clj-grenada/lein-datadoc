@@ -5,14 +5,12 @@ jdk:
  - openjdk7
 install: lein install
 script:
- - mkdir /tmp/pseudo-repo
  - cp ci/profiles.clj $HOME/.lein/profiles.clj
 
  - git clone https://github.com/Prismatic/plumbing.git
  - pushdir plumbing
  - git co plumbing-0.4.4
  - lein datadoc install
- - lein datadoc deploy pseudo-repo
  - popdir
 
  - pushdir ci
