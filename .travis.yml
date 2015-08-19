@@ -13,7 +13,7 @@ script:
  - lein datadoc install
  - popd
 
- - git clone --depth 1 -b v1.0.0-rc.1 https://github.com/clj-grenada/lib-grenada.git $HOME/lib-grenada
+ - git clone --depth 1 -b v1.0.0-rc.2 https://github.com/clj-grenada/lib-grenada.git $HOME/lib-grenada
  - pushd $HOME/lib-grenada
  - lein datadoc install
  - popd

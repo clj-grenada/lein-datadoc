@@ -20,11 +20,11 @@
 
 (deftest things-from-lib-grenada
   (let [ts-map (-> (sources/from-depspec '[org.clj-grenada/lib-grenada
-                                           "1.0.0-rc.1" :classifier "datadoc"])
+                                           "1.0.0-rc.2" :classifier "datadoc"])
                    converters/to-mapping)
-        bars-t (get ts-map ["org.clj-grenada" "lib-grenada" "1.0.0-rc.1" "clj"
+        bars-t (get ts-map ["org.clj-grenada" "lib-grenada" "1.0.0-rc.2" "clj"
                             "grenada.bars"])
-        deftag+-t (get ts-map ["org.clj-grenada" "lib-grenada" "1.0.0-rc.1"
+        deftag+-t (get ts-map ["org.clj-grenada" "lib-grenada" "1.0.0-rc.2"
                                "clj" "grenada.guten-tag.more" "deftag+"])]
     (is (t/thing?+ bars-t))
     (is (t/has-aspect? ::t/namespace bars-t))
