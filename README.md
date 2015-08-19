@@ -37,7 +37,7 @@ for how to provide additional information.
                 :dependencies […
                                [org.clojars.rmoehn/lein-grim "0.3.10"]]
                 :plugins […
-                          [org.clj-grenada/lein-datadoc "1.0.0-rc.2"]}}
+                          [org.clj-grenada/lein-datadoc "1.0.0-rc.3"]}}
      ```
 
      Yes, this introduces a new profile. See [below](#why-profile-and-alias) why
@@ -53,7 +53,7 @@ for how to provide additional information.
               :dependencies […
                              [org.clojars.rmoehn/lein-grim "0.3.10"]]
               :plugins […
-                        [org.clj-grenada/lein-datadoc "1.0.0-rc.2"]]})
+                        [org.clj-grenada/lein-datadoc "1.0.0-rc.3"]]})
      ```
 
   2. In your project's root directory, run `lein datadoc install` to create a

@@ -28,7 +28,7 @@
                                "clj" "grenada.guten-tag.more" "deftag+"])]
     (is (t/thing?+ bars-t))
     (is (t/has-aspect? ::t/namespace bars-t))
-    (is (= :common-mark (get-in bars-t [:bars :doro.bars/markup-all])))
+    (is (= :common-mark (get-in bars-t [:bars :poomoo.bars/markup-all])))
 
     (is (t/thing?+ deftag+-t))
     (is (t/has-aspect? ::a/macro deftag+-t))
