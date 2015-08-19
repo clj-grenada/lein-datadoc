@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/clj-grenada/lein-datadoc.svg?branch=devel)](https://travis-ci.org/clj-grenada/lein-datadoc)
+
 # lein-datadoc
 
 A Leiningen plugin for producing **Datadoc JARs** from your Leiningen projects.
@@ -9,13 +11,18 @@ follow the two steps described [below](#getting-started).
 
 Belongs to the [Grenada project](https://github.com/clj-grenada/grenada-spec).
 For an **overview** of Grenada documentation, [see
-here](https://github.com/clj-grenada/lib-grenada/doc/overview.md).
+here](https://github.com/clj-grenada/lib-grenada/blob/devel/doc/overview.md).
 
 Only tested with **Leiningen 2.5.1**.
 
 ## Getting started
 
-Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
+These two steps produce a Datadoc JAR from **your Leiningen project** and deploy
+it to Clojars. The Datadoc JAR will **contain** roughly the same information as
+API documentation pages produced by
+[Codox](https://github.com/weavejester/codox) or
+[Autodoc](https://github.com/tomfaulhaber/autodoc). See [below](#cmetadata-bars)
+for how to provide additional information.
 
   1. Decide if you want the `lein datadoc` plugin available in all your
      Leiningen projects or only in selected ones.
@@ -30,7 +37,7 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
                 :dependencies […
                                [org.clojars.rmoehn/lein-grim "0.3.10"]]
                 :plugins […
-                          [org.clj-grenada/lein-datadoc "1.0.0-rc.1"]}}
+                          [org.clj-grenada/lein-datadoc "1.0.0-rc.2"]}}
      ```
 
      Yes, this introduces a new profile. See [below](#why-profile-and-alias) why
@@ -46,10 +53,10 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
               :dependencies […
                              [org.clojars.rmoehn/lein-grim "0.3.10"]]
               :plugins […
-                        [org.clj-grenada/lein-datadoc "1.0.0-rc.1"]]})
+                        [org.clj-grenada/lein-datadoc "1.0.0-rc.2"]]})
      ```
 
-  3. In your project's root directory, run `lein datadoc install` to create a
+  2. In your project's root directory, run `lein datadoc install` to create a
      Datadoc JAR and install it into your **local** Maven repository. Or `lein
      datadoc deploy clojars` to create a Datadoc JAR and deploy it to Clojars.
      The **coordinates** in both cases will be the same as your project's.
@@ -59,6 +66,35 @@ Steps to getting a Datadoc JAR for **your Leiningen project** on Clojars:
      you didn't see an error while deploying, everything will be where you want
      it to be. If Datadoc JARs become popular, Clojars will probably start
      supporting them.
+
+## Cmetadata Bars
+
+Sometimes a doc string is not enough. – You want to provide **additional
+structured information** about your [concrete
+things](https://github.com/clj-grenada/grenada-spec/blob/master/NewModel.md).
+For example, you want to specify when a concrete thing was added or deprecated,
+or simply the markup language used for its doc string. In order to do this, you
+can attach Bars in a concrete Thing's
+[Cmetadata](https://github.com/clj-grenada/grenada-spec/blob/master/NewModel.md#a-new-data-model).
+Looks like this:
+
+```clojure
+(defn identity
+  "Returns its argument `x` unchanged."
+  {:grenada.cmeta/bars {:grenada.bars/lifespan {:added "1.0.4"
+                                                :deprecated nil}
+                        :poomoo.bars/markup :common-mark}}
+  [x]
+  x)
+```
+
+See the namespaces
+[`grenada.bars`](https://github.com/clj-grenada/lib-grenada/blob/master/src/clj/grenada/bars.clj)
+and
+[`poomoo.bars`](https://github.com/clj-grenada/poomoo/blob/master/src/poomoo/bars.clj)
+for the currently **available Bar types**. If you don't find a Bar type fit to
+hold your information, you can [define your
+own](https://github.com/clj-grenada/poomoo/blob/master/src/poomoo/bars.clj).
 
 ## Why profile and alias?
 
