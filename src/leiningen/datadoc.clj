@@ -18,7 +18,8 @@
              [main :as lein]]
             [plumbing
              [core :as plumbing :refer [fnk safe-get safe-get-in <-]]
-             [graph :as graph]]
+             [graph :as graph]
+             [map :as map]]
             [schema.core :as s])
   (:import org.sonatype.aether.transfer.NoRepositoryConnectorException))
 
@@ -259,8 +260,8 @@
   (postprocessors/jar-from-files
     (safe-get config :grenada-out)
     (safe-get-in config [:datadoc :target-path])
-    (gren-utils/safe-select-keys (safe-get-in config [:datadoc :jar-coords])
-                                 #{:group :artifact :version})))
+    (map/safe-select-keys (safe-get-in config [:datadoc :jar-coords])
+                               #{:group :artifact :version})))
 
 ;; Credits: https://github.com/technomancy/leiningen/blob/2e181037521c1837fa8e75913f5744fe4aa28bf4/src/leiningen/install.clj
 (defn install
