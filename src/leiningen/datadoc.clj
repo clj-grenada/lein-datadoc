@@ -327,6 +327,9 @@
                  " - you're trying to deploy to a group you're not allowed to"
                  " deploy to or have messed up something else about the"
                  " coordinates. (ReasonPhrase: Forbidden)\n"
+                 " - something is wrong with your internet connection. Try to"
+                 " open a web page in your browser. (ReasonPhrase: Method Not"
+                 " Allowed)\n"
                  "■■■■■■■■"))
              (throw e))))))))
 
